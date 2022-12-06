@@ -2,17 +2,8 @@ public static class Day5
 {
     public static void SolvePart1()
     {
-        var stacks = new Dictionary<int, List<string>>() {
-            { 0, new List<string>() },
-            { 1, new List<string>() },
-            { 2, new List<string>() },
-            { 3, new List<string>() },
-            { 4, new List<string>() },
-            { 5, new List<string>() },
-            { 6, new List<string>() },
-            { 7, new List<string>() },
-            { 8, new List<string>() }
-        };
+        var stacks = new Dictionary<int, List<string>>() { { 0, new List<string>() }, { 1, new List<string>() }, { 2, new List<string>() }, { 3, new List<string>() }, { 4, new List<string>() }, { 5, new List<string>() }, { 6, new List<string>() }, { 7, new List<string>() }, { 8, new List<string>() }
+            };
         var input = File.ReadAllText("Day5/input.txt");
         var moves = new List<string>();
 
@@ -69,10 +60,8 @@ public static class Day5
 
     public static void SolvePart2()
     {
-        var stacks = new Dictionary<int, List<string>>() {
-            { 0, new List<string>() },
-            { 1, new List<string>() },
-            { 2, new List<string>() }, { 3, new List<string>() }, { 4, new List<string>() }, { 5, new List<string>() }, { 6, new List<string>() }, { 7, new List<string>() }, { 8, new List<string>() } };
+        var stacks = new Dictionary<int, List<string>>() { { 0, new List<string>() }, { 1, new List<string>() }, { 2, new List<string>() }, { 3, new List<string>() }, { 4, new List<string>() }, { 5, new List<string>() }, { 6, new List<string>() }, { 7, new List<string>() }, { 8, new List<string>() }
+            };
         var input = File.ReadAllText("Day5/input.txt");
         var moves = new List<string>();
 
@@ -109,22 +98,18 @@ public static class Day5
 
             var from = int.Parse(move.Split(" ")[3]) - 1;
 
-
-            Console.WriteLine($"Moving {count} from {from + 1} to {to + 1}");
+            Console.WriteLine($"Moving {count} from {from} to {to}");
             count = Math.Min(count, stacks[from].Count);
             var itemsToMove = stacks[from].TakeLast(count).ToList();
             stacks[to].AddRange(itemsToMove);
-            itemsToMove.ToList().ForEach(x => stacks[from].Remove(x));
+            stacks[from].RemoveRange(stacks[from].Count - count, count);
+            //itemsToMove.ToList().ForEach(x => stacks[from].Remove(x));
             count--;
-            PrintPuzzle(stacks);
+            //PrintPuzzle(stacks);
         }
-
-        Console.WriteLine("\nPart 2:");
-        PrintPuzzle(stacks);
 
         Console.WriteLine("\nDone: " + string.Join("", stacks.Select(x => x.Value.LastOrDefault())));
     }
-
 
     public static void AddIf(this List<string> list, string item)
     {
