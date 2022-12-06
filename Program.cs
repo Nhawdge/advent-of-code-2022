@@ -1,1 +1,1 @@
-﻿Day5.SolvePart2();
+﻿Day6.SolvePart2();
